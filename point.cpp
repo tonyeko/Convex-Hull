@@ -28,8 +28,8 @@ void MakeRandomPoint (point * P)
 {
     // Algoritma
     int X, Y;
-    X = rand() % 20001 - 10000; // -10000 <= X <= 10000
-    Y = rand() % 20001 - 10000; // -10000 <= Y <= 10000
+    X = rand() % 2001 - 1000; // -1000 <= X <= 1000
+    Y = rand() % 2001 - 1000; // -1000 <= Y <= 1000
     *P = MakePoint(X, Y);
 }
 

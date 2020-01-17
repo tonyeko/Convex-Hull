@@ -2,8 +2,8 @@
 /* *** Definisi ABSTRACT DATA TYPE point *** */
 
 typedef struct point {
-	float X; /* absis   */
-	float Y; /* ordinat */
+	int X; /* absis   */
+	int Y; /* ordinat */
     bool operator < (const point& rhs) const {return X < rhs.X; }
     bool operator > (const point& rhs) const {return Y > rhs.Y; }
 } point;
