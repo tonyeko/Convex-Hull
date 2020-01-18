@@ -1,12 +1,13 @@
 import java.util.*;
 import java.awt.*;
+import java.text.DecimalFormat;
 
 class Main {
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
         // Kamus
         int N, x, y, i;
-        long startTime, endTime;
+        double startTime, endTime;
         Vector<Point> P = new Vector<Point>();
         Set<Point> result = new HashSet<Point>();
         Set<Point[]> ConvexHull = new HashSet<Point[]>();
@@ -15,8 +16,10 @@ class Main {
         if (N > 0) {
             System.out.println("\n"+N+" Titik Acak:");
             for (i = 0; i < N; i++) {
-                x = getRandomIntegerBetweenRange(1260,10);
-                y = getRandomIntegerBetweenRange(700,35);
+                // x = getRandomIntegerBetweenRange(1260,10);
+                // y = getRandomIntegerBetweenRange(700,35);
+                x = getRandomIntegerBetweenRange(-630,630);
+                y = getRandomIntegerBetweenRange(-340,320);
                 P.add(new Point(x,y));
                 System.out.println("Titik ke-" + (i+1) + ": " + "(" +(int)(P.get(i)).getX() + "," + (int)(P.get(i)).getY() + ")");
             }
@@ -32,7 +35,7 @@ class Main {
                 System.out.print("(" + (int) A.getX() + "," + (int) A.getY() + "),");
             }
             System.out.println("\b}");
-            System.out.println("\nWaktu untuk menemukan Convex Hull: " + (endTime - startTime) + " ms");
+            System.out.println("\nWaktu untuk menemukan Convex Hull: "+ (endTime - startTime) +" ms");
             new Image(P, ConvexHull);
         } else {
             // N valid jika N > 1
