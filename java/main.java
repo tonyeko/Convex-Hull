@@ -1,6 +1,5 @@
 import java.util.*;
 import java.awt.*;
-import java.text.DecimalFormat;
 
 class Main {
     static Scanner input = new Scanner(System.in);
@@ -16,12 +15,10 @@ class Main {
         if (N > 0) {
             System.out.println("\n"+N+" Titik Acak:");
             for (i = 0; i < N; i++) {
-                // x = getRandomIntegerBetweenRange(1260,10);
-                // y = getRandomIntegerBetweenRange(700,35);
-                x = getRandomIntegerBetweenRange(-630,630);
-                y = getRandomIntegerBetweenRange(-340,320);
+                x = getRandomInteger(-630,630); 
+                y = getRandomInteger(-340,320);
                 P.add(new Point(x,y));
-                System.out.println("Titik ke-" + (i+1) + ": " + "(" +(int)(P.get(i)).getX() + "," + (int)(P.get(i)).getY() + ")");
+                System.out.println("Titik ke-" + (i+1) + ": " + "(" + x + "," + y + ")");
             }
             /* ================================= CONVEX HULL ================================ */
             startTime = System.currentTimeMillis();
@@ -56,8 +53,7 @@ class Main {
                 for (j = 0; j < P.size(); j++) {
                     if (!(P.get(j).equals(P.get(i)))) {
                         // Membuat persamaan garis: ax + by = c
-                        a = (P.get(j)).getY() - (P.get(i)).getY();
-                        b = (P.get(i)).getX() - (P.get(j)).getX();
+                        a = (P.get(j)).getY() - (P.get(i)).getY(); b = (P.get(i)).getX() - (P.get(j)).getX();
                         c = (P.get(i)).getX() * (P.get(j)).getY() - (P.get(i)).getY() * (P.get(j)).getX();
                         k = 0;
                         stop = false;
@@ -75,17 +71,12 @@ class Main {
                                     stop = true;
                                 }
                             }
-                            if (!stop) {
-                                k++;
-                            }
+                            if (!stop) { k++; }
                         }
                         // Jika !stop, semua titik berada di kiri atau di kanan garis (P[i] dan P[j] titik2 pembentuk convex hull)
                         if (!stop) {
-                            if (P.get(i).getX() > P.get(j).getX()) {
-                                line = new Point[]{P.get(i), P.get(j)};
-                            } else {
-                                line = new Point[]{P.get(j), P.get(i)};
-                            }                    
+                            if (P.get(i).getX() > P.get(j).getX()) { line = new Point[]{P.get(i), P.get(j)}; } 
+                            else { line = new Point[]{P.get(j), P.get(i)}; }                    
                             result.add(line);
                         }
                     }
@@ -99,6 +90,11 @@ class Main {
         return result;
     }
 
+    static int getRandomInteger(int min, int max) {
+        int x = (int) (Math.random() * ((max - min) + 1)) + min;
+        return x;
+    }
+
     static Set<Point> ConvertSetTupleToSet(Set<Point[]> SetTupleOfLine) {
         Set<Point> result = new HashSet<Point>();
         for(Point[] A : SetTupleOfLine) { //Iterate Set
@@ -107,10 +103,5 @@ class Main {
             }
         }
         return result;
-    }
-
-    static int getRandomIntegerBetweenRange(int min, int max) {
-        int x = (int) (Math.random() * ((max - min) + 1)) + min;
-        return x;
     }
 }
