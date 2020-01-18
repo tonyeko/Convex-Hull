@@ -71,13 +71,9 @@ class Main {
                         else { less = false; }
                         // Looping pengecekan
                         while (k < P.size() && !stop) {
-                            /*
-                             * Stop saat ditemukan satu titik yang berada di sisi yang berbeda dengan titik
-                             * yang lain pada garis ax+by=c
-                             */
+                            /* Stop saat ditemukan satu titik yang berada di sisi yang berbeda dengan titik yang lain pada garis ax+by=c */
                             if (!(P.get(k).equals(P.get(i))) && !(P.get(k).equals(P.get(j)))) {
-                                if ((less && (a * P.get(k).getX() + b * P.get(k).getY() > c))
-                                        || (!less && (a * P.get(k).getX() + b * P.get(k).getY() < c))) {
+                                if ((less && (a * P.get(k).getX() + b * P.get(k).getY() > c)) || (!less && (a * P.get(k).getX() + b * P.get(k).getY() < c))) {
                                     stop = true;
                                 }
                             }
@@ -102,17 +98,6 @@ class Main {
             line = new Point[]{P.get(0), P.get(1)};
             result.add(line);
         }
-        // for (List<Point> A : result) {
-        //     System.out.println("LIST: "+A.toString());
-        // }
-        // TEST ITERASI RESULT2
-        // for (Point[] A : result) {
-        //     System.out.println("=================");
-        //     for (int it = 0; it < A.length; it++) {
-        //         System.out.println(A[it].getX()+" "+A[it].getY());
-        //     }
-        //     System.out.println("=================");
-        // }
         return result;
     }
 
