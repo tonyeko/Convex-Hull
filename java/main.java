@@ -40,11 +40,6 @@ class Main {
         }
     }
 
-    static int getRandomIntegerBetweenRange(int min, int max) {
-        int x = (int) (Math.random() * ((max - min) + 1)) + min;
-        return x;
-    }
-
     static Set<Point[]> SearchConvexHull(Vector<Point> P) {
         /* Kamus Lokal */
         int i, j, k;
@@ -109,5 +104,10 @@ class Main {
             }
         }
         return result;
+    }
+
+    static int getRandomIntegerBetweenRange(int min, int max) {
+        int x = (int) (Math.random() * ((max - min) + 1)) + min;
+        return x;
     }
 }

@@ -18,15 +18,17 @@ public class Image extends JFrame {
 
     public void paint(Graphics g) {
         super.paint(g);
+        Graphics2D g2 = (Graphics2D) g;
         // int width = 1280; int height = 720; int scale = 1000;
         this.setBackground(Color.WHITE);
+        g.setColor(Color.GREEN);
+        g2.setStroke(new BasicStroke(3));
+        for (Point[] A : this.SetTupleOfLine) {
+            g2.drawLine((int)A[0].getX(), (int)A[0].getY(), (int)A[1].getX(), (int)A[1].getY());
+        }
         g.setColor(Color.RED);
         for (int i = 0; i < this.vectorOfPoints.size(); i++) {
-            g.fillOval((int)this.vectorOfPoints.get(i).getX(), (int)this.vectorOfPoints.get(i).getY(), 7, 7);
-        }
-        g.setColor(Color.GREEN);
-        for (Point[] A : this.SetTupleOfLine) {
-            g.drawLine((int)A[0].getX(), (int)A[0].getY(), (int)A[1].getX(), (int)A[1].getY());
+            g.fillOval((int)this.vectorOfPoints.get(i).getX(), (int)this.vectorOfPoints.get(i).getY(), 6, 6);
         }
     }
 
