@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.List;
 import java.awt.*;
 
 class Main {
@@ -10,7 +9,7 @@ class Main {
         long startTime, endTime;
         Vector<Point> P = new Vector<Point>();
         Set<Point> result = new HashSet<Point>();
-        Set<List<Point>> ConvexHull = new HashSet<List<Point>>();
+        Set<Point[]> ConvexHull = new HashSet<Point[]>();
         // Algoritma
         System.out.print("Masukkan banyaknya titik yang diinginkan: "); N = input.nextInt();
         if (N > 0) {
@@ -19,7 +18,6 @@ class Main {
                 x = getRandomIntegerBetweenRange(1260,10);
                 y = getRandomIntegerBetweenRange(700,35);
                 P.add(new Point(x,y));
-                // P.add(new Point(i,0));
                 System.out.println("Titik ke-" + (i+1) + ": " + "(" +(int)(P.get(i)).getX() + "," + (int)(P.get(i)).getY() + ")");
             }
             /* ================================= CONVEX HULL ================================ */
@@ -27,7 +25,7 @@ class Main {
             ConvexHull = SearchConvexHull(P);
             endTime = System.currentTimeMillis();
             /* ============================================================================== */
-            result.addAll(ConvertSetListToSet(ConvexHull));
+            result.addAll(ConvertSetTupleToSet(ConvexHull));
             System.out.print("\nHimpunan Titik Pembentuk Convex Hull: ");
             System.out.print("{");
             for (Point A : result) {
@@ -35,7 +33,7 @@ class Main {
             }
             System.out.println("\b}");
             System.out.println("\nWaktu untuk menemukan Convex Hull: " + (endTime - startTime) + " ms");
-            new Image(P, result, ConvexHull);
+            new Image(P, ConvexHull);
         } else {
             // N valid jika N > 1
             System.out.println("Masukkan tidak sesuai!");
@@ -47,13 +45,13 @@ class Main {
         return x;
     }
 
-    static Set<List<Point>> SearchConvexHull(Vector<Point> P) {
+    static Set<Point[]> SearchConvexHull(Vector<Point> P) {
         /* Kamus Lokal */
         int i, j, k;
         double a, b, c;
         boolean stop, less;
-        Set<List<Point>> result = new HashSet<List<Point>>();
-        List<Point> ConvexHullLine = new ArrayList<Point>();
+        Set<Point[]> result = new HashSet<Point[]>();
+        Point[] line;
         /* Algoritma */
         if (P.size() > 2) {
             for (i = 0; i < P.size(); i++) {
@@ -69,11 +67,8 @@ class Main {
                         while (((P.get(k).equals(P.get(i))) || (P.get(k).equals(P.get(j)))) && k < P.size()) {
                             k++;
                         }
-                        if (a * P.get(k).getX() + b * P.get(k).getY() < c) {
-                            less = true;
-                        } else {
-                            less = false;
-                        }
+                        if (a * P.get(k).getX() + b * P.get(k).getY() < c) { less = true; } 
+                        else { less = false; }
                         // Looping pengecekan
                         while (k < P.size() && !stop) {
                             /*
@@ -90,29 +85,42 @@ class Main {
                                 k++;
                             }
                         }
-                        // Jika !stop, semua titik berada di kiri atau di kanan garis (P[i] dan P[j]
-                        // titik2 pembentuk convex hull)
+                        // Jika !stop, semua titik berada di kiri atau di kanan garis (P[i] dan P[j] titik2 pembentuk convex hull)
                         if (!stop) {
-                            ConvexHullLine.add(P.get(i));
-                            ConvexHullLine.add(P.get(j));
-                            result.add(ConvexHullLine);
+                            if (P.get(i).getX() > P.get(j).getX()) {
+                                line = new Point[]{P.get(i), P.get(j)};
+                            } else {
+                                line = new Point[]{P.get(j), P.get(i)};
+                            }                    
+                            result.add(line);
                         }
                     }
                 }
             }
         } else {
             // Kasus untuk 2 titik, 2 titik tersebut adalah pembentuk convex hull
-            ConvexHullLine.addAll(P);
-            result.add(ConvexHullLine);
+            line = new Point[]{P.get(0), P.get(1)};
+            result.add(line);
         }
+        // for (List<Point> A : result) {
+        //     System.out.println("LIST: "+A.toString());
+        // }
+        // TEST ITERASI RESULT2
+        // for (Point[] A : result) {
+        //     System.out.println("=================");
+        //     for (int it = 0; it < A.length; it++) {
+        //         System.out.println(A[it].getX()+" "+A[it].getY());
+        //     }
+        //     System.out.println("=================");
+        // }
         return result;
     }
 
-    static Set<Point> ConvertSetListToSet(Set<List<Point>> SetListOfPoint) {
+    static Set<Point> ConvertSetTupleToSet(Set<Point[]> SetTupleOfLine) {
         Set<Point> result = new HashSet<Point>();
-        for(List<Point> A : SetListOfPoint) {
-            for (int it = 0; it < A.size(); it++) {
-                result.add(A.get(it));
+        for(Point[] A : SetTupleOfLine) { //Iterate Set
+            for (int it = 0; it < A.length; it++) { //Iterate Array
+                result.add(A[it]);
             }
         }
         return result;
