@@ -26,11 +26,13 @@ public class Image extends JFrame {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
-        // Draw Sumbu X, Y, koordinat batas 
+        // Draw Sumbu X, Y
         g.setColor(new Color(148,211,172));
         g2.setStroke(new BasicStroke(2));
         g2.drawLine(this.CenterX, 0, this.CenterX, 720);
         g2.drawLine(0, this.CenterY, 1280, this.CenterY);
+        // Draw tulisan pusat koordinat dan koordinat batas 
+        g.setColor(new Color(18,202,214));
         g.drawString("(0,320)", this.CenterX-45, 45);
         g.drawString("(0,-340)", this.CenterX-50, 705);
         g.drawString("(630,0)", 1230, this.CenterY+15);

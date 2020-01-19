@@ -21,9 +21,9 @@ class Main {
                 System.out.println("Titik ke-" + (i+1) + ": " + "(" + x + "," + y + ")");
             }
             /* ================================= CONVEX HULL ================================ */
-            startTime = System.currentTimeMillis();
+            startTime = System.nanoTime();
             ConvexHull = SearchConvexHull(P);
-            endTime = System.currentTimeMillis();
+            endTime = System.nanoTime();
             /* ============================================================================== */
             result.addAll(ConvertSetTupleToSet(ConvexHull));
             System.out.print("\nHimpunan Titik Pembentuk Convex Hull: ");
@@ -32,7 +32,7 @@ class Main {
                 System.out.print("(" + (int) A.getX() + "," + (int) A.getY() + "),");
             }
             System.out.println("\b}");
-            System.out.println("\nWaktu untuk menemukan Convex Hull: "+ (endTime - startTime) +" ms");
+            System.out.println("\nWaktu untuk menemukan Convex Hull: "+ (endTime - startTime) / 1000000 +" ms");
             new Image(P, ConvexHull);
         } else {
             // N valid jika N > 1
