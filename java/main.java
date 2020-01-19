@@ -58,14 +58,12 @@ class Main {
                         k = 0;
                         stop = false;
                         // Inisiasi pengecekan
-                        while (((P.get(k).equals(P.get(i))) || (P.get(k).equals(P.get(j)))) && k < P.size()) {
-                            k++;
-                        }
+                        while (((P.get(k).equals(P.get(i))) || (P.get(k).equals(P.get(j)))) && k < P.size()) { k++; }
                         if (a * P.get(k).getX() + b * P.get(k).getY() < c) { less = true; } 
                         else { less = false; }
                         // Looping pengecekan
                         while (k < P.size() && !stop) {
-                            /* Stop saat ditemukan satu titik yang berada di sisi yang berbeda dengan titik yang lain pada garis ax+by=c */
+                            // Stop saat ditemukan satu titik yang berada di sisi yang berbeda dengan titik yang lain pada garis ax+by=c
                             if (!(P.get(k).equals(P.get(i))) && !(P.get(k).equals(P.get(j)))) {
                                 if ((less && (a * P.get(k).getX() + b * P.get(k).getY() > c)) || (!less && (a * P.get(k).getX() + b * P.get(k).getY() < c))) {
                                     stop = true;
