@@ -31,10 +31,10 @@ public class Image extends JFrame {
         g2.setStroke(new BasicStroke(2));
         g2.drawLine(this.CenterX, 0, this.CenterX, 720);
         g2.drawLine(0, this.CenterY, 1280, this.CenterY);
-        g.drawString("(0,360)", this.CenterX-45, 45);
-        g.drawString("(0,-360)", this.CenterX-50, 705);
-        g.drawString("(640,0)", 1230, this.CenterY+15);
-        g.drawString("(-640,0)", 10, this.CenterY+15);
+        g.drawString("(0,320)", this.CenterX-45, 45);
+        g.drawString("(0,-340)", this.CenterX-50, 705);
+        g.drawString("(630,0)", 1230, this.CenterY+15);
+        g.drawString("(-630,0)", 10, this.CenterY+15);
         // Draw X+ dan Y+
         g.drawString("(0,0)", this.CenterX+3, this.CenterY-5);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20)); 
