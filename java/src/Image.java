@@ -5,10 +5,9 @@ import java.awt.Point;
 
 public class Image extends JFrame { 
     Vector<Point> vectorOfPoints;
-    Point[] arrayOfPoints;
     Set<Point[]> SetTupleOfLine;
     int CenterX, CenterY;
-    ImageIcon img = new ImageIcon("img/icon.png");
+    ImageIcon img = new ImageIcon("../src/img/icon.png");
     public Image(Vector<Point> vector, Set<Point[]> line) {
         super("Convex Hull (Brute Force Algorithm) - 13518030");
         getContentPane().setBackground(new Color(239,252,239));
